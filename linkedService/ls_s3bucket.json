@@ -1,0 +1,10 @@
+{
+	"name": "ls_s3bucket",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://kittukeys.vault.azure.net/"
+		}
+	}
+}
