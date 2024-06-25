@@ -1,0 +1,17 @@
+{
+	"name": "TestBranch_pipeline_Testing",
+	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 12
+				}
+			}
+		],
+		"annotations": []
+	}
+}
