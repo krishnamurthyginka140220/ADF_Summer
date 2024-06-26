@@ -1,0 +1,37 @@
+{
+	"name": "DS_SNOWFLAKE",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SNOWFLAKE_kittudb",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"Accountname": "LWLHIUX-SU81165",
+				"DBname": "KITTUDB",
+				"Whname": "COMPUTE_WH",
+				"Username": "KRISH6666",
+				"Role": "ACCOUNTADMIN"
+			}
+		},
+		"parameters": {
+			"Schemaname": {
+				"type": "string"
+			},
+			"Tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "SnowflakeV2Table",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().Schemaname",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().Tablename",
+				"type": "Expression"
+			}
+		}
+	}
+}
