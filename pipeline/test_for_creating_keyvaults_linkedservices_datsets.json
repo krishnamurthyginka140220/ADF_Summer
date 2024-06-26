@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "test_for_creating_keyvaults_linkedservices_datsets",
 	"properties": {
 		"activities": [
 			{
