@@ -1,0 +1,23 @@
+{
+	"name": "LS_SNOWFLAKE_kittudb",
+	"properties": {
+		"annotations": [],
+		"type": "SnowflakeV2",
+		"typeProperties": {
+			"authenticationType": "Basic",
+			"accountIdentifier": "LWLHIUX-SU81165",
+			"user": "KRISH6666",
+			"database": "KITTUDB",
+			"warehouse": "COMPUTE_WH",
+			"role": "ACCOUNTADMIN",
+			"password": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "snowflake-password"
+			}
+		}
+	}
+}
