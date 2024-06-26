@@ -1,0 +1,17 @@
+{
+	"name": "LS_AZ_SA_azuredirectorysa",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "AzureKeyVault",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "azure-sa-azuredirectorysa"
+			}
+		}
+	}
+}
