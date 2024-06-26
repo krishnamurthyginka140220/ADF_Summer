@@ -1,0 +1,36 @@
+{
+	"name": "DS_AZ_SQLDB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZ_SQLDB",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"Domainname": "krishserver.database.windows.net",
+				"Dbname": "krishdb",
+				"Username": "kittu23"
+			}
+		},
+		"parameters": {
+			"Schemaname": {
+				"type": "string",
+				"defaultValue": "dbo"
+			},
+			"Tablename": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": {
+				"value": "@dataset().Schemaname",
+				"type": "Expression"
+			},
+			"table": {
+				"value": "@dataset().Tablename",
+				"type": "Expression"
+			}
+		}
+	}
+}
