@@ -1,15 +1,29 @@
 {
 	"name": "LS_AZ_SQLDB",
 	"properties": {
+		"parameters": {
+			"Domainname": {
+				"type": "string",
+				"defaultValue": "krishserver.database.windows.net"
+			},
+			"Dbname": {
+				"type": "string",
+				"defaultValue": "krishdb"
+			},
+			"Username": {
+				"type": "string",
+				"defaultValue": "kittu23"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"server": "krishserver.database.windows.net",
-			"database": "krishdb",
+			"server": "@{linkedService().Domainname}",
+			"database": "@{linkedService().Dbname}",
 			"encrypt": "mandatory",
 			"trustServerCertificate": false,
 			"authenticationType": "SQL",
-			"userName": "kittu23",
+			"userName": "@{linkedService().Username}",
 			"password": {
 				"type": "AzureKeyVaultSecret",
 				"store": {

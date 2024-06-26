@@ -1,15 +1,29 @@
 {
 	"name": "LS_ONPREM_SqlServer_krishna",
 	"properties": {
+		"parameters": {
+			"Servername": {
+				"type": "string",
+				"defaultValue": "KRISHNA"
+			},
+			"Dbname": {
+				"type": "string",
+				"defaultValue": "kittudb"
+			},
+			"Username": {
+				"type": "string",
+				"defaultValue": "kittu23"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServer",
 		"typeProperties": {
-			"server": "KRISHNA",
-			"database": "kittudb",
+			"server": "@{linkedService().Servername}",
+			"database": "@{linkedService().Dbname}",
 			"encrypt": "optional",
 			"trustServerCertificate": false,
 			"authenticationType": "SQL",
-			"userName": "kittu23",
+			"userName": "@{linkedService().Username}",
 			"password": {
 				"type": "AzureKeyVaultSecret",
 				"store": {

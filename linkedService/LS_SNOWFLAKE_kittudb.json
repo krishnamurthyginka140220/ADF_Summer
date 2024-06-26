@@ -1,15 +1,37 @@
 {
 	"name": "LS_SNOWFLAKE_kittudb",
 	"properties": {
+		"parameters": {
+			"Accountname": {
+				"type": "string",
+				"defaultValue": "LWLHIUX-SU81165"
+			},
+			"DBname": {
+				"type": "string",
+				"defaultValue": "KITTUDB"
+			},
+			"Whname": {
+				"type": "string",
+				"defaultValue": "COMPUTE_WH"
+			},
+			"Username": {
+				"type": "string",
+				"defaultValue": "KRISH6666"
+			},
+			"Role": {
+				"type": "string",
+				"defaultValue": "ACCOUNTADMIN"
+			}
+		},
 		"annotations": [],
 		"type": "SnowflakeV2",
 		"typeProperties": {
 			"authenticationType": "Basic",
-			"accountIdentifier": "LWLHIUX-SU81165",
-			"user": "KRISH6666",
-			"database": "KITTUDB",
-			"warehouse": "COMPUTE_WH",
-			"role": "ACCOUNTADMIN",
+			"accountIdentifier": "@{linkedService().Accountname}",
+			"user": "@{linkedService().Username}",
+			"database": "@{linkedService().DBname}",
+			"warehouse": "@{linkedService().Whname}",
+			"role": "@{linkedService().Role}",
 			"password": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
