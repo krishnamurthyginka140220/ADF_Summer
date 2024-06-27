@@ -10,7 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "abc.csv",
+				"fileName": "departments_data.csv",
+				"folderPath": "kittu",
 				"container": "sourceca"
 			},
 			"columnDelimiter": ",",
