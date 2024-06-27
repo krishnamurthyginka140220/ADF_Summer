@@ -17,9 +17,43 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
+						"additionalColumns": [
+							{
+								"name": "filepath",
+								"value": "$$FILEPATH"
+							},
+							{
+								"name": "filename",
+								"value": "$$FILENAME"
+							},
+							{
+								"name": "copydep",
+								"value": "$$COLUMN:Department Name"
+							},
+							{
+								"name": "staic",
+								"value": "23"
+							},
+							{
+								"name": "date",
+								"value": {
+									"value": "@utcnow()",
+									"type": "Expression"
+								}
+							},
+							{
+								"name": "pid",
+								"value": {
+									"value": "@pipeline().RunId",
+									"type": "Expression"
+								}
+							}
+						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
+							"wildcardFolderPath": "kittusrc",
+							"wildcardFileName": "*",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -43,34 +77,103 @@
 						"mappings": [
 							{
 								"source": {
-									"name": "Name",
+									"name": "Department ID",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "Ename",
+									"name": "Department ID",
+									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "Age",
+									"name": "Department Name",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "EAge",
+									"name": "Department Name",
+									"type": "String",
 									"physicalType": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "Address",
+									"name": "Location",
 									"type": "String",
 									"physicalType": "String"
 								},
 								"sink": {
-									"name": "EAddress",
+									"name": "Location",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "filepath",
+									"type": "String"
+								},
+								"sink": {
+									"name": "filepath",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "filename",
+									"type": "String"
+								},
+								"sink": {
+									"name": "filename",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "copydep",
+									"type": "String"
+								},
+								"sink": {
+									"name": "copydep",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "staic",
+									"type": "String"
+								},
+								"sink": {
+									"name": "staic",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "date",
+									"type": "String"
+								},
+								"sink": {
+									"name": "date",
+									"type": "String",
+									"physicalType": "String"
+								}
+							},
+							{
+								"source": {
+									"name": "pid",
+									"type": "String"
+								},
+								"sink": {
+									"name": "pid",
+									"type": "String",
 									"physicalType": "String"
 								}
 							}
