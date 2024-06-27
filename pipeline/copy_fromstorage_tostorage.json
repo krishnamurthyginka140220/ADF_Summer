@@ -167,21 +167,6 @@
 				]
 			}
 		],
-		"parameters": {
-			"sfn": {
-				"type": "string",
-				"defaultValue": "abc.csv"
-			},
-			"dfn": {
-				"type": "string"
-			},
-			"sdir": {
-				"type": "string"
-			},
-			"destdir": {
-				"type": "string"
-			}
-		},
 		"annotations": []
 	}
 }
