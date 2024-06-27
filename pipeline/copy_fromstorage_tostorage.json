@@ -17,38 +17,6 @@
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
-						"additionalColumns": [
-							{
-								"name": "filepath",
-								"value": "$$FILEPATH"
-							},
-							{
-								"name": "filename",
-								"value": "$$FILENAME"
-							},
-							{
-								"name": "copydep",
-								"value": "$$COLUMN:Department Name"
-							},
-							{
-								"name": "staic",
-								"value": "23"
-							},
-							{
-								"name": "date",
-								"value": {
-									"value": "@utcnow()",
-									"type": "Expression"
-								}
-							},
-							{
-								"name": "pid",
-								"value": {
-									"value": "@pipeline().RunId",
-									"type": "Expression"
-								}
-							}
-						],
 						"storeSettings": {
 							"type": "AzureBlobStorageReadSettings",
 							"recursive": true,
