@@ -1,0 +1,105 @@
+{
+	"name": "Copydata_az_blob_blob",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AmazonS3ReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_AWS_S3_kittu6666",
+						"type": "DatasetReference",
+						"parameters": {
+							"Bucketname": "kittu6666",
+							"Directory": {
+								"value": "@pipeline().parameters.srcdir",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@pipeline().parameters.srcfn",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_AZ_BS_azuredirectorysa_destinationsa",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container": "destinationca",
+							"Directory": {
+								"value": "@pipeline().parameters.destdr",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@pipeline().parameters.destfn",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"srcdir": {
+				"type": "string",
+				"defaultValue": "raw/to_processed"
+			},
+			"srcfn": {
+				"type": "string",
+				"defaultValue": "abc.json"
+			},
+			"destdr": {
+				"type": "string"
+			},
+			"destfn": {
+				"type": "string",
+				"defaultValue": "abc.json"
+			}
+		},
+		"annotations": []
+	}
+}
