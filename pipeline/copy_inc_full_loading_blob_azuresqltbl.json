@@ -31,7 +31,6 @@
 						"sqlWriterStoredProcedureName": "[dbo].[fullincload]",
 						"sqlWriterTableType": "tbl",
 						"storedProcedureTableTypeParameterName": "input",
-						"tableOption": "autoCreate",
 						"disableMetricsCollection": false
 					},
 					"enableStaging": false,
