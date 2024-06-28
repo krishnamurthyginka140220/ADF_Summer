@@ -18,12 +18,7 @@
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"server": "@{linkedService().Domainname}",
-			"database": "@{linkedService().Dbname}",
-			"encrypt": "mandatory",
-			"trustServerCertificate": false,
-			"authenticationType": "SQL",
-			"userName": "@{linkedService().Username}",
+			"connectionString": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=@{linkedService().Domainname};Initial Catalog=@{linkedService().Dbname};User ID=@{linkedService().Username}",
 			"password": {
 				"type": "AzureKeyVaultSecret",
 				"store": {
