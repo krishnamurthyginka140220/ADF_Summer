@@ -2,20 +2,11 @@
 	"name": "AzureSqlTable1",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "LS_AZ_SQLDB",
-			"type": "LinkedServiceReference",
-			"parameters": {
-				"Domainname": "krishserver.database.windows.net",
-				"Dbname": "krishdb",
-				"Username": "kittu23"
-			}
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": [],
-		"typeProperties": {
-			"schema": "dbo",
-			"table": "sample"
-		}
+		"schema": []
 	}
 }
