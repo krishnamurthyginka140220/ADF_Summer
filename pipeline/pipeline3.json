@@ -9,7 +9,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@activity('Copy data1').output",
+						"value": "@equals(activity('Copy data1').output.isSuccessful,true)\n",
 						"type": "Expression"
 					},
 					"activities": [
@@ -81,7 +81,7 @@
 								{
 									"activity": "Copy data1",
 									"dependencyConditions": [
-										"Completed"
+										"Succeeded"
 									]
 								}
 							],
