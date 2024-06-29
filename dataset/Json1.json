@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "js.json",
+				"fileName": "dep.json",
 				"container": "sourceca"
 			}
 		},
