@@ -39,10 +39,10 @@
 				]
 			}
 		],
-		"parameters": {
+		"variables": {
 			"counter": {
-				"type": "int",
-				"defaultValue": 0
+				"type": "String",
+				"defaultValue": "0"
 			}
 		},
 		"annotations": []
