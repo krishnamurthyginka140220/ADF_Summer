@@ -93,7 +93,14 @@
 			{
 				"name": "Copy data1_copy1",
 				"type": "Copy",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -146,7 +153,8 @@
 								}
 							}
 						],
-						"collectionReference": "$['departments'][0]['employees']"
+						"collectionReference": "$['departments'][0]['employees']",
+						"mapComplexValuesToString": false
 					}
 				},
 				"inputs": [
@@ -157,34 +165,10 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DelimitedText9",
+						"referenceName": "DelimitedText10",
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "Set variable1_copy1",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "Copy data1_copy1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "empcount",
-					"value": {
-						"value": "@activity('Copy data1_copy1').output.rowsCopied",
-						"type": "Expression"
-					}
-				}
 			}
 		],
 		"variables": {
