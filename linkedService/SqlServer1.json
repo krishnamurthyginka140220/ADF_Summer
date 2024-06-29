@@ -1,0 +1,21 @@
+{
+	"name": "SqlServer1",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "SqlServer",
+		"typeProperties": {
+			"server": "KRISHNA",
+			"database": "kittudb",
+			"encrypt": "optional",
+			"trustServerCertificate": false,
+			"authenticationType": "SQL",
+			"userName": "kittu23",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiJkMmZlMzdkYS1mYzk0LTRmZTEtODAzOC02YTJkYmQ3OWUwM2QiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "SelfhostedIntegrationRunTime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
