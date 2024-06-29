@@ -6,7 +6,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "sample"
+			"table": "book1"
 		}
 	}
 }
