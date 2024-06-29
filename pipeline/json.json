@@ -1,5 +1,5 @@
 {
-	"name": "pipeline2",
+	"name": "json",
 	"properties": {
 		"activities": [
 			{
@@ -38,52 +38,23 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['departments'][0]['name']"
+									"path": "['name']"
 								},
 								"sink": {
-									"name": "depname",
-									"type": "String"
+									"name": "name"
 								}
 							},
 							{
 								"source": {
-									"path": "$['departments'][0]['manager']"
+									"path": "['employees']"
 								},
 								"sink": {
-									"name": "depmgr",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['teams'][0]['team_name']"
-								},
-								"sink": {
-									"name": "teamname",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "$['teams'][0]['team_lead']"
-								},
-								"sink": {
-									"name": "teanlead",
-									"type": "String"
-								}
-							},
-							{
-								"source": {
-									"path": "['membername']"
-								},
-								"sink": {
-									"name": "teammembers",
-									"type": "String"
+									"name": "employees"
 								}
 							}
 						],
-						"collectionReference": "$['members']",
-						"mapComplexValuesToString": false
+						"collectionReference": "$['departments']",
+						"mapComplexValuesToString": true
 					}
 				},
 				"inputs": [
