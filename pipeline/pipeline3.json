@@ -106,7 +106,7 @@
 		"variables": {
 			"counter": {
 				"type": "Integer",
-				"defaultValue": 0
+				"defaultValue": 1
 			},
 			"y": {
 				"type": "Integer"
