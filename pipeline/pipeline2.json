@@ -35,6 +35,54 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"path": "$['departments'][0]['name']"
+								},
+								"sink": {
+									"name": "depname",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['departments'][0]['manager']"
+								},
+								"sink": {
+									"name": "depmgr",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['teams'][0]['team_name']"
+								},
+								"sink": {
+									"name": "teamname",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "$['teams'][0]['team_lead']"
+								},
+								"sink": {
+									"name": "teanlead",
+									"type": "String"
+								}
+							},
+							{
+								"source": {
+									"path": "['membername']"
+								},
+								"sink": {
+									"name": "teammembers",
+									"type": "String"
+								}
+							}
+						],
+						"collectionReference": "$['members']",
 						"mapComplexValuesToString": false
 					}
 				},
