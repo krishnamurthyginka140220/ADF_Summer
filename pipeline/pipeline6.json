@@ -21,7 +21,7 @@
 				"typeProperties": {
 					"variableName": "va",
 					"value": {
-						"value": "@activity('Lookup1').output.firstRow['id']",
+						"value": "@activity('Lookup1').output.value[2].Name",
 						"type": "Expression"
 					}
 				}
