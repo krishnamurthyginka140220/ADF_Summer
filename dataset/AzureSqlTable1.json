@@ -1,0 +1,12 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "book1"
+		}
+	}
+}

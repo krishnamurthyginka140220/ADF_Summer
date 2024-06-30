@@ -1,0 +1,99 @@
+{
+	"name": "copy_mulitple_list",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy data1",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "DelimitedTextSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"fileListPath": "sourceca/listoffiles.txt",
+							"enablePartitionDiscovery": false
+						},
+						"formatSettings": {
+							"type": "DelimitedTextReadSettings"
+						}
+					},
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "DS_AZ_BS_azuredirectorysa_sourceca",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container": "sourceca",
+							"Directory": {
+								"value": "@pipeline().parameters.srcdr",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "DS_AZ_BS_azuredirectorysa_destinationsa",
+						"type": "DatasetReference",
+						"parameters": {
+							"Container": "destinationca",
+							"Directory": {
+								"value": "@pipeline().parameters.desdr",
+								"type": "Expression"
+							},
+							"Filename": {
+								"value": "@pipeline().parameters.desfn",
+								"type": "Expression"
+							}
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"srcdr": {
+				"type": "string"
+			},
+			"srcfn": {
+				"type": "string"
+			},
+			"desdr": {
+				"type": "string",
+				"defaultValue": "listfiles"
+			},
+			"desfn": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}

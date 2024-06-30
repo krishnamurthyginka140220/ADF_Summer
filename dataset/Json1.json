@@ -1,0 +1,63 @@
+{
+	"name": "Json1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage2",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "dep.json",
+				"container": "sourceca"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"company": {
+					"type": "string"
+				},
+				"location": {
+					"type": "string"
+				},
+				"departments": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"name": {
+								"type": "string"
+							},
+							"manager": {
+								"type": "string"
+							},
+							"teams": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"team_name": {
+											"type": "string"
+										},
+										"team_lead": {
+											"type": "string"
+										},
+										"members": {
+											"type": "array",
+											"items": {
+												"type": "string"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

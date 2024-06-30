@@ -1,0 +1,25 @@
+{
+	"name": "Excel1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage3",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"c": {
+				"type": "int",
+				"defaultValue": 0
+			}
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ex.xlsx",
+				"container": "sourceca"
+			}
+		},
+		"schema": []
+	}
+}

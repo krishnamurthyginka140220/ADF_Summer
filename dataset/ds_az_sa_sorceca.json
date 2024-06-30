@@ -1,0 +1,24 @@
+{
+	"name": "ds_az_sa_sorceca",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_AZ_SA_azuredirectorysa",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "departments_data.csv",
+				"folderPath": "kittusrc",
+				"container": "sourceca"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\"",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
