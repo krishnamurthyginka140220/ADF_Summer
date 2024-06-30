@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "listoffiles.txt",
+				"fileName": "dbo.SampleTable.txt",
 				"container": "sourceca"
 			},
 			"columnDelimiter": ",",
