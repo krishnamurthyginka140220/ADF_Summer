@@ -1,0 +1,19 @@
+{
+	"name": "Json5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage11",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "rest.json",
+				"container": "sourceca"
+			}
+		},
+		"schema": {}
+	}
+}

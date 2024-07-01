@@ -1,8 +1,8 @@
 {
-	"name": "DelimitedText1",
+	"name": "DelimitedText12",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "AzureBlobStorage1",
+			"referenceName": "AzureBlobStorage13",
 			"type": "LinkedServiceReference"
 		},
 		"annotations": [],
@@ -10,19 +10,14 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "dbo.SampleTable.txt",
-				"container": "sourceca"
+				"folderPath": "abc",
+				"container": "destinationca"
 			},
 			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""
 		},
-		"schema": [
-			{
-				"name": "{",
-				"type": "String"
-			}
-		]
+		"schema": []
 	}
 }
