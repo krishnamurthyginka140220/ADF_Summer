@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "departments-2022.csv",
 				"container": "sourceca"
 			},
 			"columnDelimiter": ",",
