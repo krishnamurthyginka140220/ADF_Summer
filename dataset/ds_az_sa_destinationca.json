@@ -1,10 +1,6 @@
 {
 	"name": "ds_az_sa_destinationca",
 	"properties": {
-		"linkedServiceName": {
-			"referenceName": "LS_AZ_SA_azuredirectorysa",
-			"type": "LinkedServiceReference"
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
