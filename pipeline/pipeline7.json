@@ -61,34 +61,6 @@
 				]
 			}
 		],
-		"variables": {
-			"B": {
-				"type": "Boolean"
-			},
-			"S": {
-				"type": "String",
-				"defaultValue": "krishna sony ginka"
-			},
-			"A": {
-				"type": "Array",
-				"defaultValue": [
-					"krish",
-					"sony",
-					"nishu"
-				]
-			},
-			"I": {
-				"type": "String"
-			},
-			"j": {
-				"type": "String",
-				"defaultValue": "{\"dict1\": {\"name\": \"John Doe\",     \"age\": 30,     \"city\": \"New York\"   }"
-			},
-			"j2": {
-				"type": "String",
-				"defaultValue": "{\"dict2\": { \"name\": \"Jane Doe\",     \"age\": 30,     \"country\": \"USA\"   }"
-			}
-		},
 		"annotations": []
 	}
 }
