@@ -3,54 +3,89 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "If Condition1",
-				"type": "IfCondition",
+				"name": "Until1",
+				"type": "Until",
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
 					"expression": {
-						"value": "@greaterOrEquals(variables('numberlist'),4)",
+						"value": "@bool(variables('fileex'))",
 						"type": "Expression"
 					},
-					"ifFalseActivities": [
+					"activities": [
 						{
-							"name": "Wait2",
-							"type": "Wait",
+							"name": "Get Metadata1",
+							"type": "GetMetadata",
 							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
 							"userProperties": [],
 							"typeProperties": {
-								"waitTimeInSeconds": 2
+								"dataset": {
+									"referenceName": "DelimitedText1",
+									"type": "DatasetReference"
+								},
+								"fieldList": [
+									"exists"
+								],
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							}
+						},
+						{
+							"name": "If Condition1",
+							"type": "IfCondition",
+							"dependsOn": [
+								{
+									"activity": "Get Metadata1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@activity('Get Metadata1').output.exists",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "Set variable1",
+										"type": "SetVariable",
+										"dependsOn": [],
+										"policy": {
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"variableName": "fileex",
+											"value": "true"
+										}
+									}
+								]
 							}
 						}
 					],
-					"ifTrueActivities": [
-						{
-							"name": "Wait1",
-							"type": "Wait",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"waitTimeInSeconds": 1
-							}
-						}
-					]
+					"timeout": "0.12:00:00"
 				}
 			}
 		],
 		"variables": {
-			"numberlist": {
-				"type": "Array",
-				"defaultValue": [
-					1,
-					2,
-					3,
-					4,
-					5,
-					6,
-					7,
-					8,
-					9
-				]
+			"fileex": {
+				"type": "String",
+				"defaultValue": "false"
 			}
 		},
 		"annotations": []
