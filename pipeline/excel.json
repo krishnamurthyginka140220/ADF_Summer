@@ -24,19 +24,7 @@
 						}
 					},
 					"enableStaging": false
-				},
-				"inputs": [
-					{
-						"referenceName": "Excel1",
-						"type": "DatasetReference",
-						"parameters": {
-							"c": {
-								"value": "@variables('counter')",
-								"type": "Expression"
-							}
-						}
-					}
-				]
+				}
 			}
 		],
 		"variables": {

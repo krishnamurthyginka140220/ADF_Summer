@@ -42,50 +42,8 @@
 							"fileExtension": ".txt"
 						}
 					},
-					"enableStaging": false,
-					"translator": {
-						"type": "TabularTranslator",
-						"typeConversion": true,
-						"typeConversionSettings": {
-							"allowDataTruncation": true,
-							"treatBooleanAsNumber": false
-						}
-					}
-				},
-				"inputs": [
-					{
-						"referenceName": "DS_AZ_BS_azuredirectorysa_sourceca",
-						"type": "DatasetReference",
-						"parameters": {
-							"Container": "sourceca",
-							"Directory": {
-								"value": "@pipeline().parameters.srcdr",
-								"type": "Expression"
-							},
-							"Filename": {
-								"value": "@pipeline().parameters.srcfn",
-								"type": "Expression"
-							}
-						}
-					}
-				],
-				"outputs": [
-					{
-						"referenceName": "DS_AZ_BS_azuredirectorysa_destinationsa",
-						"type": "DatasetReference",
-						"parameters": {
-							"Container": "destinationca",
-							"Directory": {
-								"value": "@pipeline().parameters.destdr",
-								"type": "Expression"
-							},
-							"Filename": {
-								"value": "@pipeline().parameters.destfn",
-								"type": "Expression"
-							}
-						}
-					}
-				]
+					"enableStaging": false
+				}
 			}
 		],
 		"parameters": {
