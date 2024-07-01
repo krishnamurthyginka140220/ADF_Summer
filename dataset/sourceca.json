@@ -11,6 +11,7 @@
 			"location": {
 				"type": "AzureBlobStorageLocation",
 				"fileName": "*",
+				"folderPath": "kittusrc",
 				"container": "sourceca"
 			},
 			"columnDelimiter": ",",
