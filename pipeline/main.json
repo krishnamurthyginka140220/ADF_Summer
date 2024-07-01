@@ -37,7 +37,7 @@
 				"typeProperties": {
 					"variableName": "x",
 					"value": {
-						"value": "@activity('Execute Pipeline1').output.pipelineReturnValue.val",
+						"value": "@activity('Execute Pipeline1').output.pipelineReturnValue.var",
 						"type": "Expression"
 					}
 				}
@@ -45,7 +45,7 @@
 		],
 		"variables": {
 			"x": {
-				"type": "String"
+				"type": "Integer"
 			}
 		},
 		"annotations": []
