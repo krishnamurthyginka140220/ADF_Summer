@@ -1,0 +1,24 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pipeline7",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/sourceca/blobs/",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/71145ec8-7c17-46ff-adf4-1f58b6904539/resourceGroups/azuregroup_rg/providers/Microsoft.Storage/storageAccounts/azuredirectorysa",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
