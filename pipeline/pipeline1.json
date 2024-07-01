@@ -24,13 +24,13 @@
 							"referenceName": "ls_azure_azuredirectorysa",
 							"type": "LinkedServiceReference"
 						},
-						"path": "sourceca/kittusrc/deletedjsonfiles"
+						"path": "sourceca/kittusrc/deletedjsonfiles/a.txt"
 					},
 					"enableLogging": true,
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"recursive": true,
-						"wildcardFileName": "*.json",
+						"wildcardFileName": "*.docx",
 						"enablePartitionDiscovery": false
 					}
 				}
