@@ -19,11 +19,18 @@
 						"referenceName": "Binary1",
 						"type": "DatasetReference"
 					},
+					"logStorageSettings": {
+						"linkedServiceName": {
+							"referenceName": "ls_azure_azuredirectorysa",
+							"type": "LinkedServiceReference"
+						},
+						"path": "sourceca/kittusrc.abc.txt"
+					},
 					"enableLogging": true,
 					"storeSettings": {
 						"type": "AzureBlobStorageReadSettings",
 						"recursive": true,
-						"wildcardFileName": "*.pdf",
+						"wildcardFileName": "*.csv",
 						"enablePartitionDiscovery": false
 					}
 				}
