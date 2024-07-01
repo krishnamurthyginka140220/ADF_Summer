@@ -75,6 +75,7 @@
 					"location": {
 						"type": "AzureBlobStorageLocation",
 						"fileName": "*",
+						"folderPath": "kittusrc",
 						"container": "sourceca"
 					},
 					"columnDelimiter": ",",
@@ -185,6 +186,8 @@
 								"storeSettings": {
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
+									"wildcardFolderPath": "kittusrc",
+									"wildcardFileName": "*",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
@@ -256,11 +259,12 @@
 				],
 				"type": "BlobEventsTrigger",
 				"typeProperties": {
-					"blobPathBeginsWith": "/sourceca/blobs/",
+					"blobPathBeginsWith": "/sourceca/blobs/kittusrc",
 					"ignoreEmptyBlobs": true,
 					"scope": "[parameters('trigger1_properties_typeProperties_scope')]",
 					"events": [
-						"Microsoft.Storage.BlobCreated"
+						"Microsoft.Storage.BlobCreated",
+						"Microsoft.Storage.BlobDeleted"
 					]
 				}
 			},
