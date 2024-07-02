@@ -74,14 +74,14 @@
 								}
 							},
 							{
-								"name": "name",
+								"name": "employee_name",
 								"value": {
 									"value": "@json(variables('var1')).employee_name",
 									"type": "Expression"
 								}
 							},
 							{
-								"name": "sal",
+								"name": "employee_salary",
 								"value": {
 									"value": "@json(variables('var1')).employee_salary",
 									"type": "Expression"
@@ -114,15 +114,7 @@
 						"mappings": [
 							{
 								"source": {
-									"path": "$['employeedetails']"
-								},
-								"sink": {
-									"name": "emp"
-								}
-							},
-							{
-								"source": {
-									"path": "$['employeedetails']['id']"
+									"path": "$['id']"
 								},
 								"sink": {
 									"name": "id"
@@ -130,18 +122,18 @@
 							},
 							{
 								"source": {
-									"path": "$['employeedetails']['name']"
+									"path": "$['employee_name']"
 								},
 								"sink": {
-									"name": "name"
+									"name": "employee_name"
 								}
 							},
 							{
 								"source": {
-									"path": "$['employeedetails']['sal']"
+									"path": "$['employee_salary']"
 								},
 								"sink": {
-									"name": "sal"
+									"name": "employee_salary"
 								}
 							}
 						]
