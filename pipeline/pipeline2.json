@@ -93,21 +93,21 @@
 							{
 								"name": "id",
 								"value": {
-									"value": "@json(variables('c')).empdetails.id",
+									"value": "@json(variables('c')).empdetails['id']",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "employee_name",
 								"value": {
-									"value": "@json(variables('c')).empdetails.employee_name",
+									"value": "@json(variables('c')).empdetails['employee_name']",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "employee_salary",
 								"value": {
-									"value": "@json(variables('c')).empdetails.employee_salary",
+									"value": "@json(variables('c')).empdetails['employee_salary']",
 									"type": "Expression"
 								}
 							}
