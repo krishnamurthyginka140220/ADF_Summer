@@ -44,11 +44,40 @@
 				}
 			},
 			{
-				"name": "Copy data1_copy1",
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "c",
+					"value": {
+						"value": "@concat('{ \"empdetails\" :',string(variables('var1')),'}')",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Copy data1",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
-				"dependsOn": [],
+				"dependsOn": [
+					{
+						"activity": "Set variable2",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -59,26 +88,26 @@
 				"userProperties": [],
 				"typeProperties": {
 					"source": {
-						"type": "JsonSource",
+						"type": "DelimitedTextSource",
 						"additionalColumns": [
 							{
 								"name": "id",
 								"value": {
-									"value": "@variables('a')[variables('i')]",
+									"value": "@json(variables('c')).empdetails.id",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "employee_name",
 								"value": {
-									"value": "@json(string(variables('a'))).employee_name",
+									"value": "@json(variables('c')).empdetails.employee_name",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "employee_salary",
 								"value": {
-									"value": "@json(string(variables('a'))).employee_salary",
+									"value": "@json(variables('c')).empdetails.employee_salary",
 									"type": "Expression"
 								}
 							}
@@ -89,7 +118,7 @@
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
-							"type": "JsonReadSettings"
+							"type": "DelimitedTextReadSettings"
 						}
 					},
 					"sink": {
@@ -106,37 +135,16 @@
 					"enableStaging": false,
 					"translator": {
 						"type": "TabularTranslator",
-						"mappings": [
-							{
-								"source": {
-									"path": "$['id']"
-								},
-								"sink": {
-									"name": "id"
-								}
-							},
-							{
-								"source": {
-									"path": "$['employee_name']"
-								},
-								"sink": {
-									"name": "employee_name"
-								}
-							},
-							{
-								"source": {
-									"path": "$['employee_salary']"
-								},
-								"sink": {
-									"name": "employee_salary"
-								}
-							}
-						]
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
 					}
 				},
 				"inputs": [
 					{
-						"referenceName": "Json2",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					}
 				],
@@ -146,65 +154,6 @@
 						"type": "DatasetReference"
 					}
 				]
-			},
-			{
-				"name": "ForEach1",
-				"type": "ForEach",
-				"dependsOn": [
-					{
-						"activity": "Set variable1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"userProperties": [],
-				"typeProperties": {
-					"items": {
-						"value": "@variables('var1')",
-						"type": "Expression"
-					},
-					"isSequential": true,
-					"activities": [
-						{
-							"name": "Append variable1",
-							"type": "AppendVariable",
-							"dependsOn": [],
-							"userProperties": [],
-							"typeProperties": {
-								"variableName": "a",
-								"value": {
-									"value": "@item()",
-									"type": "Expression"
-								}
-							}
-						}
-					]
-				}
-			},
-			{
-				"name": "Set variable2",
-				"type": "SetVariable",
-				"dependsOn": [
-					{
-						"activity": "ForEach1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
-				"policy": {
-					"secureOutput": false,
-					"secureInput": false
-				},
-				"userProperties": [],
-				"typeProperties": {
-					"variableName": "c",
-					"value": {
-						"value": "@variables('a')",
-						"type": "Expression"
-					}
-				}
 			}
 		],
 		"variables": {
@@ -219,7 +168,7 @@
 				"defaultValue": 0
 			},
 			"c": {
-				"type": "Array"
+				"type": "String"
 			}
 		},
 		"annotations": []
