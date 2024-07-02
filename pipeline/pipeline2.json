@@ -38,7 +38,7 @@
 				"typeProperties": {
 					"variableName": "var1",
 					"value": {
-						"value": "@(activity('Web1').output.data",
+						"value": "@activity('Web1').output.pipelineReturnValue",
 						"type": "Expression"
 					}
 				}
