@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
+				"fileName": "abcd.json",
 				"folderPath": "abc",
 				"container": "destinationca"
 			},
