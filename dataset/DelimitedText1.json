@@ -10,7 +10,6 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "employeedata-2023.csv",
 				"container": "sourceca"
 			},
 			"columnDelimiter": ",",
