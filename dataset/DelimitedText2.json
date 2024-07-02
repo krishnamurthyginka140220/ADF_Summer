@@ -5,11 +5,6 @@
 			"referenceName": "ls_azure_azuredirectorysa",
 			"type": "LinkedServiceReference"
 		},
-		"parameters": {
-			"fn": {
-				"type": "string"
-			}
-		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
