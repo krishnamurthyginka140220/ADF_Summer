@@ -5,11 +5,20 @@
 		"factoryName": {
 			"value": "datafact6666"
 		},
-		"AzureBlobStorage1_connectionString": {
+		"SqlServer1_password": {
 			"value": ""
 		},
-		"AzureBlobStorage2_connectionString": {
+		"ls_azure_azuredirectorysa_connectionString": {
 			"value": ""
+		},
+		"SqlServer1_properties_typeProperties_server": {
+			"value": "KRISHNA"
+		},
+		"SqlServer1_properties_typeProperties_database": {
+			"value": "kittudb"
+		},
+		"SqlServer1_properties_typeProperties_userName": {
+			"value": "kittu23"
 		},
 		"containerUri": {
 			"value": ""
