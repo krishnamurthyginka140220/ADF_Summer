@@ -44,7 +44,7 @@
 				}
 			},
 			{
-				"name": "Copy data1",
+				"name": "Copy data1_copy1",
 				"type": "Copy",
 				"state": "Inactive",
 				"onInactiveMarkAs": "Succeeded",
@@ -64,21 +64,21 @@
 							{
 								"name": "id",
 								"value": {
-									"value": "@json(variables('var1')).id",
+									"value": "@variables('a')[variables('i')]",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "employee_name",
 								"value": {
-									"value": "@json(variables('var1')).employee_name",
+									"value": "@json(string(variables('a'))).employee_name",
 									"type": "Expression"
 								}
 							},
 							{
 								"name": "employee_salary",
 								"value": {
-									"value": "@json(variables('var1')).employee_salary",
+									"value": "@json(string(variables('a'))).employee_salary",
 									"type": "Expression"
 								}
 							}
@@ -167,113 +167,58 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Copy data1_copy1",
-							"type": "Copy",
+							"name": "Append variable1",
+							"type": "AppendVariable",
 							"dependsOn": [],
-							"policy": {
-								"timeout": "0.12:00:00",
-								"retry": 0,
-								"retryIntervalInSeconds": 30,
-								"secureOutput": false,
-								"secureInput": false
-							},
 							"userProperties": [],
 							"typeProperties": {
-								"source": {
-									"type": "JsonSource",
-									"additionalColumns": [
-										{
-											"name": "id",
-											"value": {
-												"value": "@json(string(item())).id",
-												"type": "Expression"
-											}
-										},
-										{
-											"name": "employee_name",
-											"value": {
-												"value": "@json(string(item())).employee_name",
-												"type": "Expression"
-											}
-										},
-										{
-											"name": "employee_salary",
-											"value": {
-												"value": "@json(string(item())).employee_salary",
-												"type": "Expression"
-											}
-										}
-									],
-									"storeSettings": {
-										"type": "AzureBlobStorageReadSettings",
-										"recursive": true,
-										"enablePartitionDiscovery": false
-									},
-									"formatSettings": {
-										"type": "JsonReadSettings"
-									}
-								},
-								"sink": {
-									"type": "DelimitedTextSink",
-									"storeSettings": {
-										"type": "AzureBlobStorageWriteSettings"
-									},
-									"formatSettings": {
-										"type": "DelimitedTextWriteSettings",
-										"quoteAllText": true,
-										"fileExtension": ".txt"
-									}
-								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"mappings": [
-										{
-											"source": {
-												"path": "$['id']"
-											},
-											"sink": {
-												"name": "id"
-											}
-										},
-										{
-											"source": {
-												"path": "$['employee_name']"
-											},
-											"sink": {
-												"name": "employee_name"
-											}
-										},
-										{
-											"source": {
-												"path": "$['employee_salary']"
-											},
-											"sink": {
-												"name": "employee_salary"
-											}
-										}
-									]
+								"variableName": "a",
+								"value": {
+									"value": "@(item()",
+									"type": "Expression"
 								}
-							},
-							"inputs": [
-								{
-									"referenceName": "Json2",
-									"type": "DatasetReference"
-								}
-							],
-							"outputs": [
-								{
-									"referenceName": "DelimitedText2",
-									"type": "DatasetReference"
-								}
-							]
+							}
 						}
 					]
+				}
+			},
+			{
+				"name": "Set variable2",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "c",
+					"value": {
+						"value": "@variables('a')",
+						"type": "Expression"
+					}
 				}
 			}
 		],
 		"variables": {
 			"var1": {
+				"type": "Array"
+			},
+			"a": {
+				"type": "Array"
+			},
+			"i": {
+				"type": "Integer",
+				"defaultValue": 0
+			},
+			"c": {
 				"type": "Array"
 			}
 		},
