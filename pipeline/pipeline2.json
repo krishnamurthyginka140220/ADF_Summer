@@ -38,7 +38,7 @@
 				"typeProperties": {
 					"variableName": "var1",
 					"value": {
-						"value": "@activity('Web1').output.pipelineReturnValue",
+						"value": "@activity('Web1').output.data",
 						"type": "Expression"
 					}
 				}
@@ -161,7 +161,7 @@
 				"userProperties": [],
 				"typeProperties": {
 					"items": {
-						"value": "@createArray(variables('var1'))",
+						"value": "@variables('var1')",
 						"type": "Expression"
 					},
 					"isSequential": true,
@@ -185,21 +185,21 @@
 										{
 											"name": "id",
 											"value": {
-												"value": "@json(item()).id",
+												"value": "@json(string(item())).id",
 												"type": "Expression"
 											}
 										},
 										{
 											"name": "employee_name",
 											"value": {
-												"value": "@json(item()).employee_name",
+												"value": "@json(string(item())).employee_name",
 												"type": "Expression"
 											}
 										},
 										{
 											"name": "employee_salary",
 											"value": {
-												"value": "@json(item()).employee_salary",
+												"value": "@json(string(item())).employee_salary",
 												"type": "Expression"
 											}
 										}
