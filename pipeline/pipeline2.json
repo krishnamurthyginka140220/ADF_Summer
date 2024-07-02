@@ -38,7 +38,7 @@
 				"typeProperties": {
 					"variableName": "var1",
 					"value": {
-						"value": "@string(activity('Web1').output.data[0])",
+						"value": "@activity('Web1').output.data",
 						"type": "Expression"
 					}
 				}
@@ -46,14 +46,9 @@
 			{
 				"name": "Copy data1",
 				"type": "Copy",
-				"dependsOn": [
-					{
-						"activity": "Set variable1",
-						"dependencyConditions": [
-							"Succeeded"
-						]
-					}
-				],
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
+				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
 					"retry": 0,
@@ -151,11 +146,137 @@
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Set variable1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('var1')",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy data1_copy1",
+							"type": "Copy",
+							"state": "Inactive",
+							"onInactiveMarkAs": "Succeeded",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"additionalColumns": [
+										{
+											"name": "id",
+											"value": {
+												"value": "@json(item()).id",
+												"type": "Expression"
+											}
+										},
+										{
+											"name": "employee_name",
+											"value": {
+												"value": "@json(item()).employee_name",
+												"type": "Expression"
+											}
+										},
+										{
+											"name": "employee_salary",
+											"value": {
+												"value": "@json(item()).employee_salary",
+												"type": "Expression"
+											}
+										}
+									],
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"sink": {
+									"type": "DelimitedTextSink",
+									"storeSettings": {
+										"type": "AzureBlobStorageWriteSettings"
+									},
+									"formatSettings": {
+										"type": "DelimitedTextWriteSettings",
+										"quoteAllText": true,
+										"fileExtension": ".txt"
+									}
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"path": "$['id']"
+											},
+											"sink": {
+												"name": "id"
+											}
+										},
+										{
+											"source": {
+												"path": "$['employee_name']"
+											},
+											"sink": {
+												"name": "employee_name"
+											}
+										},
+										{
+											"source": {
+												"path": "$['employee_salary']"
+											},
+											"sink": {
+												"name": "employee_salary"
+											}
+										}
+									]
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "Json2",
+									"type": "DatasetReference"
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DelimitedText2",
+									"type": "DatasetReference"
+								}
+							]
+						}
+					]
+				}
 			}
 		],
 		"variables": {
 			"var1": {
-				"type": "String"
+				"type": "Array"
 			}
 		},
 		"annotations": []
