@@ -26,7 +26,11 @@
 				}
 			],
 			"scriptLines": [
-				"source(useSchema: false,",
+				"source(output(",
+				"          dept_id as integer,",
+				"          dept_name as string",
+				"     ),",
+				"     useSchema: false,",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
