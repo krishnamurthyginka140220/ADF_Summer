@@ -45,7 +45,7 @@
 				"     columnDelimiter: ',',",
 				"     escapeChar: '\\\\',",
 				"     quoteChar: '\\\"',",
-				"     columnNamesAsHeader: false) ~> source2"
+				"     columnNamesAsHeader: true) ~> source2"
 			]
 		}
 	}
