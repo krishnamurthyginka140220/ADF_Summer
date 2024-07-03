@@ -15,7 +15,12 @@
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
-				"source(useSchema: false,",
+				"source(output(",
+				"          emp_id as integer,",
+				"          emp_name as string,",
+				"          dept_id as integer",
+				"     ),",
+				"     useSchema: false,",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
