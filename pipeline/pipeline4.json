@@ -16,14 +16,8 @@
 				"userProperties": [],
 				"typeProperties": {
 					"dataflow": {
-						"referenceName": "joining",
-						"type": "DataFlowReference",
-						"parameters": {
-							"parameter1": {
-								"value": "'@{pipeline().DataFactory}'",
-								"type": "Expression"
-							}
-						}
+						"referenceName": "dataflow1",
+						"type": "DataFlowReference"
 					},
 					"compute": {
 						"coreCount": 8,
