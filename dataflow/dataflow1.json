@@ -12,6 +12,10 @@
 					"name": "source1"
 				},
 				{
+					"linkedService": {
+						"referenceName": "ls_azure_azuredirectorysa",
+						"type": "LinkedServiceReference"
+					},
 					"name": "source2"
 				}
 			],
@@ -30,8 +34,18 @@
 				"     escapeChar: '\\\\',",
 				"     quoteChar: '\\\"',",
 				"     columnNamesAsHeader: true) ~> source1",
-				"source(allowSchemaDrift: true,",
-				"     validateSchema: false) ~> source2"
+				"source(useSchema: false,",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'delimited',",
+				"     container: 'sourceca',",
+				"     folderPath: 'dataflow',",
+				"     fileName: 'emp2.csv',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: false) ~> source2"
 			]
 		}
 	}
