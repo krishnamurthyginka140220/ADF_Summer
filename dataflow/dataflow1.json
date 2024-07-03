@@ -91,7 +91,7 @@
 				"     broadcast: 'auto')~> join1",
 				"join1 split(dept_name=='HR',",
 				"     dept_name=='Engineering',",
-				"     disjoint: false) ~> split1@(HR, ENGINEERING, FINANCE)",
+				"     disjoint: true) ~> split1@(HR, ENGINEERING, FINANCE)",
 				"split1@HR sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'delimited',",
