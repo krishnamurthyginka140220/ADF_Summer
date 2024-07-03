@@ -13,7 +13,11 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "sort1"
+				}
+			],
 			"scriptLines": [
 				"source(useSchema: false,",
 				"     allowSchemaDrift: true,",
@@ -26,7 +30,8 @@
 				"     columnDelimiter: ',',",
 				"     escapeChar: '\\\\',",
 				"     quoteChar: '\\\"',",
-				"     columnNamesAsHeader: false) ~> source1"
+				"     columnNamesAsHeader: true) ~> source1",
+				"source1 sort(asc(ERROR_FUNCTION(''), true)) ~> sort1"
 			]
 		}
 	}
