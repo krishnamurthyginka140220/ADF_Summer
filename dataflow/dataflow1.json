@@ -91,7 +91,7 @@
 				"     broadcast: 'auto')~> join1",
 				"join1 split(dept_name=='HR',",
 				"     dept_name=='Engineering',",
-				"     disjoint: true) ~> split1@(HR, ENGINEERING, FINANCE)",
+				"     disjoint: false) ~> split1@(HR, ENGINEERING, FINANCE)",
 				"split1@HR sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'delimited',",
@@ -103,7 +103,8 @@
 				"     columnNamesAsHeader: true,",
 				"     partitionFileNames:['hr.csv'],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1",
 				"split1@ENGINEERING sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'delimited',",
@@ -115,7 +116,8 @@
 				"     columnNamesAsHeader: true,",
 				"     partitionFileNames:['eng.csv'],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink2",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink2",
 				"split1@FINANCE sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'delimited',",
@@ -127,7 +129,8 @@
 				"     columnNamesAsHeader: true,",
 				"     partitionFileNames:['def.csv'],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink3"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink3"
 			]
 		}
 	}
