@@ -19,7 +19,15 @@
 					"name": "source2"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "ls_azure_azuredirectorysa",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "aggregate1"
@@ -47,7 +55,11 @@
 				"     escapeChar: '\\\\',",
 				"     quoteChar: '\\\"',",
 				"     columnNamesAsHeader: true) ~> source1",
-				"source(useSchema: false,",
+				"source(output(",
+				"          DepartmentID as integer,",
+				"          DepartmentName as string",
+				"     ),",
+				"     useSchema: false,",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
@@ -61,11 +73,28 @@
 				"     columnNamesAsHeader: true) ~> source2",
 				"source1 aggregate(groupBy(DepartmentID),",
 				"     Totalcountbydep = count(EmployeeID)) ~> aggregate1",
-				"aggregate1, source2 join(DepartmentID == ERROR_FUNCTION(''),",
+				"aggregate1, source2 join(aggregate1@DepartmentID == source2@DepartmentID,",
 				"     joinType:'inner',",
 				"     matchType:'exact',",
 				"     ignoreSpaces: false,",
-				"     broadcast: 'auto')~> join1"
+				"     broadcast: 'auto')~> join1",
+				"join1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delimited',",
+				"     container: 'destinationca',",
+				"     folderPath: 'abc',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: true,",
+				"     partitionFileNames:['totaldepcount'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          DepartmentName,",
+				"          Totalcountbydep",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
