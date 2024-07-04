@@ -26,13 +26,13 @@
 				"     format: 'delimited',",
 				"     container: 'sourceca',",
 				"     folderPath: 'dataflow',",
-				"     fileName: 'emp2.csv',",
+				"     fileName: 'employees (1).csv',",
 				"     columnDelimiter: ',',",
 				"     escapeChar: '\\\\',",
 				"     quoteChar: '\\\"',",
 				"     columnNamesAsHeader: true) ~> source1",
 				"source1 derive(column1 = ERROR_FUNCTION(''),",
-				"          each(match(startsWith(name, 'e')), $$ = $$)) ~> derivedColumn1"
+				"          each(match(startsWith(name, 'e')), $$ = $$+199)) ~> derivedColumn1"
 			]
 		}
 	}
