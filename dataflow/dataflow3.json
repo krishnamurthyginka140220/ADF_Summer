@@ -31,8 +31,7 @@
 				"     escapeChar: '\\\\',",
 				"     quoteChar: '\\\"',",
 				"     columnNamesAsHeader: true) ~> source1",
-				"source1 derive(column1 = ERROR_FUNCTION(''),",
-				"          each(match(startsWith(name, 'e')), $$ = $$+199)) ~> derivedColumn1"
+				"source1 derive(each(match(endsWith(name,'Name')), $$ = concat(upper($0),\"--\"))) ~> derivedColumn1"
 			]
 		}
 	}
