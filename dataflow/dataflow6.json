@@ -61,7 +61,8 @@
 				"     columnNamesAsHeader: true) ~> source2",
 				"source1, source2 lookup(source1@depid == source2@DEPID,",
 				"     multiple: false,",
-				"     pickup: 'any',",
+				"     pickup: 'last',",
+				"     asc(source2@DEPNAME, true),",
 				"     broadcast: 'auto')~> lookup1"
 			]
 		}
