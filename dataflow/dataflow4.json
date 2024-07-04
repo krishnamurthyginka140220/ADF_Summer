@@ -1,0 +1,64 @@
+{
+	"name": "dataflow4",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"linkedService": {
+						"referenceName": "ls_azure_azuredirectorysa",
+						"type": "LinkedServiceReference"
+					},
+					"name": "source1"
+				},
+				{
+					"linkedService": {
+						"referenceName": "ls_azure_azuredirectorysa",
+						"type": "LinkedServiceReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "exists1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          emp_id as integer,",
+				"          demp_name as string,",
+				"          eept_id as integer",
+				"     ),",
+				"     useSchema: false,",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'delimited',",
+				"     container: 'sourceca',",
+				"     folderPath: 'dataflow',",
+				"     fileName: 'emp2.csv',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: true) ~> source1",
+				"source(useSchema: false,",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'delimited',",
+				"     container: 'sourceca',",
+				"     folderPath: 'dataflow',",
+				"     fileName: 'dep.csv',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: true) ~> source2",
+				"source1, source2 exists(ERROR_FUNCTION('') == ERROR_FUNCTION(''),",
+				"     negate:false,",
+				"     broadcast: 'auto')~> exists1"
+			]
+		}
+	}
+}
