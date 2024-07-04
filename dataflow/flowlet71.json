@@ -19,7 +19,14 @@
 				}
 			],
 			"scriptLines": [
-				"source(useSchema: false,",
+				"source(output(",
+				"          Date as date,",
+				"          Product as string,",
+				"          Region as string,",
+				"          SalesAmount as integer,",
+				"          Quantity as integer",
+				"     ),",
+				"     useSchema: false,",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
