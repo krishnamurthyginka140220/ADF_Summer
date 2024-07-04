@@ -20,9 +20,17 @@
 				}
 			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "lookup1"
+				}
+			],
 			"scriptLines": [
-				"source(useSchema: false,",
+				"source(output(",
+				"          empid as integer,",
+				"          empname as string",
+				"     ),",
+				"     useSchema: false,",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
@@ -35,13 +43,17 @@
 				"     quoteChar: '\\\"',",
 				"     columnNamesAsHeader: true) ~> source1",
 				"source(output(",
-				"          depid as string,",
-				"          depname as string",
+				"          empid as integer,",
+				"          empname as string",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     isolationLevel: 'NONE',",
-				"     format: 'table') ~> source2"
+				"     format: 'table') ~> source2",
+				"source1, source2 lookup(source1@empid == source2@empid,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookup1"
 			]
 		}
 	}
