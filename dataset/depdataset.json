@@ -10,8 +10,8 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "employees_with_duplicates_and_nulls.csv",
-				"folderPath": "dataflow",
+				"fileName": "data.csv",
+				"folderPath": "lookup",
 				"container": "sourceca"
 			},
 			"columnDelimiter": ",",
