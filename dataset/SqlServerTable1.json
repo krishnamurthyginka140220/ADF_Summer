@@ -19,7 +19,7 @@
 		],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "Sales"
+			"table": "ref"
 		}
 	}
 }
