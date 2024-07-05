@@ -1,0 +1,37 @@
+{
+	"name": "pipeline7",
+	"properties": {
+		"activities": [
+			{
+				"name": "Web1",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "https://xecdapi.xe.com/v1/convert_from?from=GBP&to=INR&amount=1",
+					"authentication": {
+						"type": "Basic",
+						"username": "xxx253563331",
+						"password": {
+							"type": "AzureKeyVaultSecret",
+							"store": {
+								"referenceName": "AzureKeyVault1",
+								"type": "LinkedServiceReference"
+							},
+							"secretName": "excomsecret"
+						}
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}
