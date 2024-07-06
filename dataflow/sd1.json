@@ -18,14 +18,21 @@
 						"referenceName": "AzureSqlDatabase_sqldb",
 						"type": "LinkedServiceReference"
 					},
-					"name": "sink1",
-					"rejectedDataLinkedService": {
-						"referenceName": "ls_az_blob_azuredirectorysa",
+					"name": "sink1"
+				},
+				{
+					"linkedService": {
+						"referenceName": "AzureSqlDatabase_sqldb",
 						"type": "LinkedServiceReference"
-					}
+					},
+					"name": "sink2"
 				}
 			],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "split1"
+				}
+			],
 			"scriptLines": [
 				"source(output(",
 				"          depid as integer,",
@@ -42,12 +49,23 @@
 				"     escapeChar: '\\\\',",
 				"     quoteChar: '\\\"',",
 				"     columnNamesAsHeader: true) ~> source1",
-				"source1 sink(allowSchemaDrift: true,",
+				"source1 split(length(depname)>=50,",
+				"     disjoint: false) ~> split1@(truncationrows, nontruncationrows)",
+				"split1@truncationrows sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     input(",
-				"          id as integer,",
-				"          name as string",
-				"     ),",
+				"     format: 'table',",
+				"     store: 'sqlserver',",
+				"     schemaName: 'dbo',",
+				"     tableName: 'dep_failed',",
+				"     insertable: true,",
+				"     updateable: false,",
+				"     deletable: false,",
+				"     upsertable: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+				"split1@nontruncationrows sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
 				"     format: 'table',",
 				"     store: 'sqlserver',",
 				"     schemaName: 'dbo',",
@@ -58,11 +76,7 @@
 				"     upsertable: false,",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError',",
-				"     mapColumn(",
-				"          id = depid,",
-				"          name = depname",
-				"     )) ~> sink1"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
 			]
 		}
 	}
