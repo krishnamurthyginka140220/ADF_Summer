@@ -10,19 +10,33 @@
 						"type": "LinkedServiceReference"
 					},
 					"name": "source1"
+				},
+				{
+					"linkedService": {
+						"referenceName": "ls_az_blob_azuredirectorysa",
+						"type": "LinkedServiceReference"
+					},
+					"name": "source2"
 				}
 			],
 			"sinks": [],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
+				},
+				{
+					"name": "surrogateKey1"
 				}
 			],
 			"scriptLines": [
 				"parameters{",
 				"     c as integer",
 				"}",
-				"source(useSchema: false,",
+				"source(output(",
+				"          name as string,",
+				"          age as short",
+				"     ),",
+				"     useSchema: false,",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
@@ -33,7 +47,22 @@
 				"     quoteChar: '\\\"',",
 				"     columnNamesAsHeader: true,",
 				"     wildcardPaths:['inc/?.csv']) ~> source1",
-				"source1 derive(col1 = $c) ~> derivedColumn1"
+				"source(useSchema: false,",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     format: 'delimited',",
+				"     container: 'sourceca',",
+				"     folderPath: 'inc',",
+				"     fileName: 'res.csv',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: true) ~> source2",
+				"source1 derive(col1 = $c) ~> derivedColumn1",
+				"derivedColumn1 keyGenerate(output(skey as long),",
+				"     startAt: 1L,",
+				"     stepValue: 1L) ~> surrogateKey1"
 			]
 		}
 	}
