@@ -5,11 +5,20 @@
 		"factoryName": {
 			"value": "datafact6666"
 		},
+		"AzureSqlDatabase1_connectionString": {
+			"value": ""
+		},
 		"SqlServer1_password": {
 			"value": ""
 		},
 		"ls_azure_azuredirectorysa_connectionString": {
 			"value": ""
+		},
+		"AzureKeyVault1_properties_typeProperties_baseUrl": {
+			"value": "https://keydb6666.vault.azure.net/"
+		},
+		"RestService1_properties_typeProperties_url": {
+			"value": "https://jsonplaceholder.typicode.com/"
 		},
 		"SqlServer1_properties_typeProperties_server": {
 			"value": "KRISHNA"
