@@ -1,0 +1,32 @@
+{
+	"name": "DelimitedText5",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_az_blob_azuredirectorysa",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"folderPath": "inc",
+				"container": "sourceca"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": false,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "name",
+				"type": "String"
+			},
+			{
+				"name": "age",
+				"type": "String"
+			}
+		]
+	}
+}
