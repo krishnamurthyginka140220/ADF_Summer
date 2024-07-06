@@ -12,13 +12,33 @@
 					"name": "source1"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"linkedService": {
+						"referenceName": "ls_az_blob_azuredirectorysa",
+						"type": "LinkedServiceReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "window1"
 				},
 				{
 					"name": "filter1"
+				},
+				{
+					"name": "filter2"
+				},
+				{
+					"name": "select1"
+				},
+				{
+					"name": "exists1"
+				},
+				{
+					"name": "union1"
 				}
 			],
 			"scriptLines": [
@@ -42,7 +62,37 @@
 				"          depid),",
 				"     asc(empname, true),",
 				"     RNK = rowNumber()) ~> window1",
-				"window1 filter(RNK!=2) ~> filter1"
+				"window1 filter(RNK==2) ~> filter1",
+				"window1 filter(RNK!=2) ~> filter2",
+				"filter1 select(mapColumn(",
+				"          empname,",
+				"          depid,",
+				"          depname,",
+				"          RNK",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"filter2, select1 exists(source1@empname == select1@empname,",
+				"     negate:true,",
+				"     broadcast: 'auto')~> exists1",
+				"exists1, select1 union(byName: false)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     format: 'delimited',",
+				"     container: 'sourceca',",
+				"     columnDelimiter: ',',",
+				"     escapeChar: '\\\\',",
+				"     quoteChar: '\\\"',",
+				"     columnNamesAsHeader: true,",
+				"     partitionFileNames:['duplicateremoval.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     mapColumn(",
+				"          empname,",
+				"          depid,",
+				"          depname",
+				"     ),",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
