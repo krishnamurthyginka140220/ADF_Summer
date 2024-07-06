@@ -79,7 +79,13 @@
 				"typeProperties": {
 					"dataflow": {
 						"referenceName": "dataflow2",
-						"type": "DataFlowReference"
+						"type": "DataFlowReference",
+						"parameters": {
+							"c": {
+								"value": "@variables('x')",
+								"type": "Expression"
+							}
+						}
 					},
 					"compute": {
 						"coreCount": 8,

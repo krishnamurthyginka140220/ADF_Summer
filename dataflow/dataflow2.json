@@ -40,6 +40,9 @@
 				},
 				{
 					"name": "union1"
+				},
+				{
+					"name": "derivedColumn2"
 				}
 			],
 			"scriptLines": [
@@ -82,14 +85,15 @@
 				"derivedColumn1 keyGenerate(output(skey as long),",
 				"     startAt: 1L,",
 				"     stepValue: 1L) ~> surrogateKey1",
-				"surrogateKey1 select(mapColumn(",
-				"          skey,",
+				"derivedColumn2 select(mapColumn(",
+				"          skey = skey2,",
 				"          name,",
 				"          age",
 				"     ),",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> select1",
 				"source2, select1 union(byName: false)~> union1",
+				"surrogateKey1 derive(skey2 = add(skey,col1)) ~> derivedColumn2",
 				"union1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     format: 'delimited',",
@@ -101,7 +105,8 @@
 				"     columnNamesAsHeader: true,",
 				"     partitionFileNames:['ref.csv'],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> sink1"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1"
 			]
 		}
 	}
