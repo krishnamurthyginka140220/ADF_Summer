@@ -147,7 +147,15 @@
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     saveOrder: 1,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     mapColumn(",
+				"          id = tid,",
+				"          name = tname,",
+				"          age = tage,",
+				"          sal = tsal,",
+				"          desg = tdesg,",
+				"          inactive = tinactive",
+				"     )) ~> sink2"
 			]
 		}
 	}
