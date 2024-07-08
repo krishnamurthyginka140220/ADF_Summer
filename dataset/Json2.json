@@ -1,0 +1,44 @@
+{
+	"name": "Json2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_az_blob_azuredirectorysa",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "jsonfile.json",
+				"folderPath": "practisefunctions",
+				"container": "sourceca"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"orderId": {
+					"type": "integer"
+				},
+				"customer": {
+					"type": "string"
+				},
+				"items": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"itemId": {
+								"type": "integer"
+							},
+							"quantity": {
+								"type": "integer"
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
