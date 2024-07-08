@@ -1,0 +1,37 @@
+{
+	"name": "DelimitedText13",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_az_blob_azuredirectorysa",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "large.csv",
+				"folderPath": "inc",
+				"container": "sourceca"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Date",
+				"type": "String"
+			},
+			{
+				"name": "Category",
+				"type": "String"
+			},
+			{
+				"name": "Amount",
+				"type": "String"
+			}
+		]
+	}
+}
