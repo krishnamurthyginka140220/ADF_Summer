@@ -15,9 +15,6 @@
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
-				"parameters{",
-				"     filter_cond as string",
-				"}",
 				"source(output(",
 				"          Date as string,",
 				"          Category as string,",
