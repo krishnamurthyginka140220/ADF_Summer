@@ -5,29 +5,20 @@
 		"factoryName": {
 			"value": "datafact6666"
 		},
-		"AzureSqlDatabase1_connectionString": {
+		"AzureSqlDatabase_sqldb_connectionString": {
 			"value": ""
 		},
-		"SqlServer1_password": {
+		"ls_az_blob_azuredirectorysa_connectionString": {
 			"value": ""
 		},
-		"ls_azure_azuredirectorysa_connectionString": {
+		"AzureDataLakeStorage1_accountKey": {
 			"value": ""
 		},
 		"AzureKeyVault1_properties_typeProperties_baseUrl": {
 			"value": "https://keydb6666.vault.azure.net/"
 		},
-		"RestService1_properties_typeProperties_url": {
-			"value": "https://jsonplaceholder.typicode.com/"
-		},
-		"SqlServer1_properties_typeProperties_server": {
-			"value": "KRISHNA"
-		},
-		"SqlServer1_properties_typeProperties_database": {
-			"value": "kittudb"
-		},
-		"SqlServer1_properties_typeProperties_userName": {
-			"value": "kittu23"
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://azzuredatalakedl.dfs.core.windows.net/"
 		}
 	}
 }
